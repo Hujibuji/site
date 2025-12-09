@@ -18,6 +18,7 @@
             --secondary-color: #1a1a1a;
             --accent-color: #00a2ff;
             --free-color: #00ff88;
+            --sidebar-color: #111111;
             --seliware-glow: 0 0 25px rgba(0, 162, 255, 0.7);
             --free-glow: 0 0 25px rgba(0, 255, 136, 0.7);
             --text-color: #f0f0f0;
@@ -30,80 +31,174 @@
             color: var(--text-color);
             min-height: 100vh;
             overflow-x: hidden;
+            transition: margin-left 0.3s ease;
+        }
+        
+        body.sidebar-open {
+            overflow: hidden;
+        }
+        
+        /* Стили для кнопки меню */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: var(--accent-color);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .menu-toggle.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.7);
+        }
+        
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        
+        /* Боковое меню */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: var(--sidebar-color);
+            z-index: 999;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+        }
+        
+        .sidebar.open {
+            left: 0;
+        }
+        
+        .sidebar-header {
+            padding: 30px 20px;
+            background: linear-gradient(135deg, rgba(0, 162, 255, 0.2), rgba(0, 162, 255, 0.05));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .sidebar-title {
+            color: var(--accent-color);
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+        }
+        
+        .sidebar-subtitle {
+            color: #aaa;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+        
+        .sidebar-item {
+            display: block;
+            padding: 18px 25px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            margin: 5px 0;
+        }
+        
+        .sidebar-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--accent-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 30px;
+        }
+        
+        .sidebar-item.active {
+            background-color: rgba(0, 162, 255, 0.15);
+            color: var(--accent-color);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .sidebar-item i {
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 20px 25px;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
+        }
+        
+        /* Оверлей для затемнения фона */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Шапка с вкладками */
-        header {
-            background-color: rgba(10, 10, 10, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--glow-intensity) var(--glow-color);
-            backdrop-filter: blur(10px);
-        }
-        
-        .tabs {
-            display: flex;
-            justify-content: center;
-            padding: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .tab {
-            padding: 15px 30px;
-            margin: 0 8px;
-            background-color: var(--secondary-color);
-            border: none;
-            color: var(--text-color);
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            outline: none;
-        }
-        
-        .tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-        
-        .tab:hover::before {
-            left: 100%;
-        }
-        
-        .tab:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 162, 255, 0.3);
-            color: var(--accent-color);
-        }
-        
-        .tab.active {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            box-shadow: var(--seliware-glow);
-            transform: translateY(-5px);
+            padding: 40px 20px 20px;
+            transition: padding-left 0.3s ease;
         }
         
         /* Контент вкладок */
         .tab-content {
             display: none;
-            padding: 40px 0;
             animation: fadeIn 0.8s ease-out;
         }
         
@@ -447,33 +542,6 @@
             border-radius: 50%;
         }
         
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background-color: var(--secondary-color);
-            border-radius: 50%;
-            color: white;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-8px);
-            background-color: var(--accent-color);
-            box-shadow: 0 10px 20px rgba(0, 162, 255, 0.3);
-        }
-        
         .profile-img {
             flex: 1;
             min-width: 300px;
@@ -555,7 +623,7 @@
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
             padding: 20px;
         }
         
@@ -843,14 +911,20 @@
         
         /* Адаптивность */
         @media (max-width: 768px) {
-            .tabs {
-                flex-direction: column;
-                align-items: center;
+            .sidebar {
+                width: 100%;
+                left: -100%;
             }
             
-            .tab {
-                width: 90%;
-                margin: 5px 0;
+            .menu-toggle {
+                top: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .container {
+                padding-top: 80px;
             }
             
             h1 {
@@ -954,17 +1028,51 @@
         <div class="circle"></div>
     </div>
     
-    <!-- Шапка с вкладками -->
-    <header>
-        <div class="container">
-            <div class="tabs">
-                <button class="tab active" data-tab="products">Товары</button>
-                <button class="tab" data-tab="free">Бесплатно</button>
-                <button class="tab" data-tab="scripts">Мои скрипты</button>
-                <button class="tab" data-tab="about">Обо мне / Соцсети</button>
-            </div>
+    <!-- Кнопка меню (три полоски) -->
+    <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- Боковое меню -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">KaLLoware</div>
+            <div class="sidebar-subtitle">Товары и скрипты для Roblox</div>
         </div>
-    </header>
+        
+        <div class="sidebar-menu">
+            <a href="#products" class="sidebar-item active" data-tab="products">
+                <i class="fas fa-shopping-cart"></i>Товары
+            </a>
+            <a href="#free" class="sidebar-item" data-tab="free">
+                <i class="fas fa-gift"></i>Бесплатно
+            </a>
+            <a href="#scripts" class="sidebar-item" data-tab="scripts">
+                <i class="fas fa-code"></i>Мои скрипты
+            </a>
+            <a href="#about" class="sidebar-item" data-tab="about">
+                <i class="fas fa-user"></i>Обо мне
+            </a>
+            
+            <div class="sidebar-divider"></div>
+            
+            <a href="https://t.me/kalloware" target="_blank" class="sidebar-item">
+                <i class="fab fa-telegram"></i>Telegram
+            </a>
+            <a href="https://github.com/Hujibuji" target="_blank" class="sidebar-item">
+                <i class="fab fa-github"></i>GitHub
+            </a>
+        </div>
+        
+        <div class="sidebar-footer">
+            © 2025 KaLLoware
+        </div>
+    </div>
+    
+    <!-- Оверлей для затемнения фона -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
     <!-- Контент вкладок -->
     <div class="container">
@@ -1047,16 +1155,6 @@
                             <li>Люблю Lua, играю в Hotline Miami, продаю читы на роблокс.</li>
                             <li>Принимаю оплату по: <span class="highlight">СБП</span>, криптовалюта <img src="https://ton.org/download/ton_symbol.png" alt="TON" class="ton-logo">, NFT подарки в telegram.</li>
                         </ul>
-                    </div>
-                    
-                    <h3 style="margin-top: 30px;">Мои социальные сети:</h3>
-                    <div class="social-links">
-                        <a href="https://t.me/kalloware" target="_blank" class="social-link" title="Telegram">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                        <a href="https://github.com/Hujibuji" target="_blank" class="social-link" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
                     </div>
                 </div>
                 
@@ -1309,164 +1407,218 @@
     </div>
 
     <script>
-        // Переключение вкладок
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
+        // Боковое меню
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const sidebarItems = document.querySelectorAll('.sidebar-item[data-tab]');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Открытие/закрытие бокового меню
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('active');
+            document.body.classList.toggle('sidebar-open');
             
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Убираем активный класс у всех вкладок и контента
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Добавляем активный класс к выбранной вкладке
-                    tab.classList.add('active');
-                    
-                    // Показываем соответствующий контент
-                    const tabId = tab.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-            
-            // Эффект параллакса для анимированного фона
-            document.addEventListener('mousemove', function(e) {
-                const circles = document.querySelectorAll('.circle');
-                const mouseX = e.clientX / window.innerWidth;
-                const mouseY = e.clientY / window.innerHeight;
+            // Скрываем или показываем кнопку меню
+            if (sidebar.classList.contains('open')) {
+                menuToggle.classList.add('hidden');
+            } else {
+                menuToggle.classList.remove('hidden');
+            }
+        });
+        
+        // Закрытие меню при клике на оверлей
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+            menuToggle.classList.remove('hidden');
+        });
+        
+        // Переключение вкладок через боковое меню
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
                 
-                circles.forEach((circle, index) => {
-                    const speed = 0.5 + index * 0.2;
-                    const x = (mouseX * 30 * speed) - 15;
-                    const y = (mouseY * 30 * speed) - 15;
-                    
-                    circle.style.transform = `translate(${x}px, ${y}px)`;
-                });
+                // Убираем активный класс у всех пунктов меню
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                // Добавляем активный класс к выбранному пункту
+                item.classList.add('active');
+                
+                // Убираем активный класс у всех вкладок
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Показываем соответствующую вкладку
+                const tabId = item.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                
+                // Закрываем меню на всех устройствах
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
+                menuToggle.classList.remove('hidden');
+                
+                // Прокручиваем к верху страницы
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+        });
+        
+        // Эффект параллакса для анимированного фона
+        document.addEventListener('mousemove', function(e) {
+            const circles = document.querySelectorAll('.circle');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
             
-            // Подсветка имени KaLLoware при загрузке
-            const kallowareElements = document.querySelectorAll('.kalloware-text');
-            kallowareElements.forEach(el => {
-                el.style.animation = 'none';
-                setTimeout(() => {
-                    el.style.animation = 'pulse 2s infinite';
-                }, 100);
+            circles.forEach((circle, index) => {
+                const speed = 0.5 + index * 0.2;
+                const x = (mouseX * 30 * speed) - 15;
+                const y = (mouseY * 30 * speed) - 15;
+                
+                circle.style.transform = `translate(${x}px, ${y}px)`;
             });
-            
-            // Добавляем CSS анимацию для пульсации
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes pulse {
-                    0% { text-shadow: 0 0 10px rgba(0, 162, 255, 0.5); }
-                    50% { text-shadow: 0 0 20px rgba(0, 162, 255, 0.8); }
-                    100% { text-shadow: 0 0 10px rgba(0, 162, 255, 0.5); }
+        });
+        
+        // Подсветка имени KaLLoware при загрузке
+        const kallowareElements = document.querySelectorAll('.kalloware-text');
+        kallowareElements.forEach(el => {
+            el.style.animation = 'none';
+            setTimeout(() => {
+                el.style.animation = 'pulse 2s infinite';
+            }, 100);
+        });
+        
+        // Добавляем CSS анимацию для пульсации
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { text-shadow: 0 0 10px rgba(0, 162, 255, 0.5); }
+                50% { text-shadow: 0 0 20px rgba(0, 162, 255, 0.8); }
+                100% { text-shadow: 0 0 10px rgba(0, 162, 255, 0.5); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Показываем год в футере как текущий
+        const currentYear = new Date().getFullYear();
+        document.querySelector('footer .container p').innerHTML = `© ${currentYear} <span class="kalloware-text">KaLLoware</span>. Все права защищены.`;
+        
+        // Модальные окна
+        const seliwareModal = document.getElementById('seliwareModal');
+        const starsModal = document.getElementById('starsModal');
+        const robuxModal = document.getElementById('robuxModal');
+        const zapretModal = document.getElementById('zapretModal');
+        const cheatsModal = document.getElementById('cheatsModal');
+        const openSeliwareBtn = document.getElementById('openSeliwareModal');
+        const openStarsBtn = document.getElementById('openStarsModal');
+        const openRobuxBtn = document.getElementById('openRobuxModal');
+        const openZapretBtn = document.getElementById('openZapretModal');
+        const openCheatsBtn = document.getElementById('openCheatsModal');
+        const closeSeliwareBtn = document.getElementById('closeSeliwareModal');
+        const closeStarsBtn = document.getElementById('closeStarsModal');
+        const closeRobuxBtn = document.getElementById('closeRobuxModal');
+        const closeZapretBtn = document.getElementById('closeZapretModal');
+        const closeCheatsBtn = document.getElementById('closeCheatsModal');
+        
+        // Открытие модального окна Seliware
+        openSeliwareBtn.addEventListener('click', function() {
+            seliwareModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Открытие модального окна Звезд Telegram
+        openStarsBtn.addEventListener('click', function() {
+            starsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Открытие модального окна Robux
+        openRobuxBtn.addEventListener('click', function() {
+            robuxModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Открытие модального окна Zapret
+        openZapretBtn.addEventListener('click', function() {
+            zapretModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Открытие модального окна Бесплатные читы
+        openCheatsBtn.addEventListener('click', function() {
+            cheatsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Закрытие модального окна Seliware
+        closeSeliwareBtn.addEventListener('click', function() {
+            seliwareModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Закрытие модального окна Звезд Telegram
+        closeStarsBtn.addEventListener('click', function() {
+            starsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Закрытие модального окна Robux
+        closeRobuxBtn.addEventListener('click', function() {
+            robuxModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Закрытие модального окна Zapret
+        closeZapretBtn.addEventListener('click', function() {
+            zapretModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Закрытие модального окна Бесплатные читы
+        closeCheatsBtn.addEventListener('click', function() {
+            cheatsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Закрытие модальных окон при клике вне их области
+        const modals = [seliwareModal, starsModal, robuxModal, zapretModal, cheatsModal];
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
                 }
-            `;
-            document.head.appendChild(style);
-            
-            // Показываем год в футере как текущий
-            const currentYear = new Date().getFullYear();
-            document.querySelector('footer .container p').innerHTML = `© ${currentYear} <span class="kalloware-text">KaLLoware</span>. Все права защищены.`;
-            
-            // Модальные окна
-            const seliwareModal = document.getElementById('seliwareModal');
-            const starsModal = document.getElementById('starsModal');
-            const robuxModal = document.getElementById('robuxModal');
-            const zapretModal = document.getElementById('zapretModal');
-            const cheatsModal = document.getElementById('cheatsModal');
-            const openSeliwareBtn = document.getElementById('openSeliwareModal');
-            const openStarsBtn = document.getElementById('openStarsModal');
-            const openRobuxBtn = document.getElementById('openRobuxModal');
-            const openZapretBtn = document.getElementById('openZapretModal');
-            const openCheatsBtn = document.getElementById('openCheatsModal');
-            const closeSeliwareBtn = document.getElementById('closeSeliwareModal');
-            const closeStarsBtn = document.getElementById('closeStarsModal');
-            const closeRobuxBtn = document.getElementById('closeRobuxModal');
-            const closeZapretBtn = document.getElementById('closeZapretModal');
-            const closeCheatsBtn = document.getElementById('closeCheatsModal');
-            
-            // Открытие модального окна Seliware
-            openSeliwareBtn.addEventListener('click', function() {
-                seliwareModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
             });
-            
-            // Открытие модального окна Звезд Telegram
-            openStarsBtn.addEventListener('click', function() {
-                starsModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-            
-            // Открытие модального окна Robux
-            openRobuxBtn.addEventListener('click', function() {
-                robuxModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-            
-            // Открытие модального окна Zapret
-            openZapretBtn.addEventListener('click', function() {
-                zapretModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-            
-            // Открытие модального окна Бесплатные читы
-            openCheatsBtn.addEventListener('click', function() {
-                cheatsModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-            
-            // Закрытие модального окна Seliware
-            closeSeliwareBtn.addEventListener('click', function() {
-                seliwareModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // Закрытие модального окна Звезд Telegram
-            closeStarsBtn.addEventListener('click', function() {
-                starsModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // Закрытие модального окна Robux
-            closeRobuxBtn.addEventListener('click', function() {
-                robuxModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // Закрытие модального окна Zapret
-            closeZapretBtn.addEventListener('click', function() {
-                zapretModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // Закрытие модального окна Бесплатные читы
-            closeCheatsBtn.addEventListener('click', function() {
-                cheatsModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // Закрытие модальных окон при клике вне их области
-            const modals = [seliwareModal, starsModal, robuxModal, zapretModal, cheatsModal];
-            modals.forEach(modal => {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
+        });
+        
+        // Закрытие модальных окон при нажатии клавиши Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                modals.forEach(modal => {
+                    if (modal.style.display === 'flex') {
                         modal.style.display = 'none';
                         document.body.style.overflow = 'auto';
                     }
                 });
-            });
-            
-            // Закрытие модальных окон при нажатии клавиши Escape
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    modals.forEach(modal => {
-                        if (modal.style.display === 'flex') {
-                            modal.style.display = 'none';
-                            document.body.style.overflow = 'auto';
-                        }
-                    });
+                
+                // Также закрываем боковое меню, если оно открыто
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                    menuToggle.classList.remove('hidden');
                 }
-            });
+            }
+        });
+        
+        // Адаптивность: закрытие меню при изменении размера окна на большой экран
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
+                menuToggle.classList.remove('hidden');
+            }
         });
     </script>
 </body>
