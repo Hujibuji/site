@@ -17,10 +17,8 @@
             --primary-color: #0a0a0a;
             --secondary-color: #1a1a1a;
             --accent-color: #00a2ff;
-            --free-color: #00ff88;
             --sidebar-color: #111111;
             --seliware-glow: 0 0 25px rgba(0, 162, 255, 0.7);
-            --free-glow: 0 0 25px rgba(0, 255, 136, 0.7);
             --text-color: #f0f0f0;
             --glow-color: rgba(255, 255, 255, 0.1);
             --glow-intensity: 0 0 15px;
@@ -219,15 +217,8 @@
             position: relative;
         }
         
-        #products h1 {
+        #products h1, #free h1, #about h1 {
             background: linear-gradient(90deg, #f0f0f0, var(--accent-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        #free h1 {
-            background: linear-gradient(90deg, var(--free-color), #00cc6a);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -235,13 +226,6 @@
         
         #scripts h1 {
             background: linear-gradient(90deg, #f0f0f0, #24292e);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        #about h1 {
-            background: linear-gradient(90deg, #f0f0f0, var(--accent-color));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -258,20 +242,12 @@
             border-radius: 3px;
         }
         
-        #products h1::after {
+        #products h1::after, #free h1::after, #about h1::after {
             background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-        }
-        
-        #free h1::after {
-            background: linear-gradient(90deg, transparent, var(--free-color), transparent);
         }
         
         #scripts h1::after {
             background: linear-gradient(90deg, transparent, #24292e, transparent);
-        }
-        
-        #about h1::after {
-            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
         }
         
         h2 {
@@ -420,7 +396,7 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
-            box-shadow: var(--free-glow);
+            box-shadow: var(--seliware-glow);
         }
         
         .free-card::before {
@@ -430,26 +406,26 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--free-color), #00cc6a);
+            background: linear-gradient(90deg, var(--accent-color), #0066ff);
         }
         
         .free-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 162, 255, 0.4);
         }
         
         .free-title {
             font-size: 32px;
             margin-bottom: 20px;
-            color: var(--free-color);
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
         }
         
         .free-btn {
             display: inline-block;
             padding: 15px 40px;
-            background: linear-gradient(90deg, var(--free-color), #00cc6a);
-            color: var(--primary-color);
+            background: linear-gradient(90deg, var(--accent-color), #0066ff);
+            color: white;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
@@ -460,36 +436,12 @@
             text-align: center;
             font-size: 18px;
             margin-top: 20px;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.5);
         }
         
         .free-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
-        }
-        
-        /* Кнопка для сайта */
-        .site-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(90deg, var(--free-color), #00cc6a);
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-            font-size: 18px;
-            margin-top: 20px;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        }
-        
-        .site-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
+            box-shadow: 0 0 30px rgba(0, 162, 255, 0.7);
         }
         
         /* Стили для секции "Обо мне" */
@@ -637,16 +589,8 @@
             padding: 40px;
             position: relative;
             animation: modalAppear 0.4s ease-out;
-        }
-        
-        #seliwareModal .modal, #robuxModal .modal, #starsModal .modal {
             border: 1px solid rgba(0, 162, 255, 0.3);
             box-shadow: var(--seliware-glow);
-        }
-        
-        #zapretModal .modal, #cheatsModal .modal {
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            box-shadow: var(--free-glow);
         }
         
         @keyframes modalAppear {
@@ -668,30 +612,14 @@
             height: 100px;
             border-radius: 20px;
             object-fit: cover;
-        }
-        
-        #seliwareModal .modal-logo, #robuxModal .modal-logo, #starsModal .modal-logo {
             border: 3px solid rgba(0, 162, 255, 0.7);
             box-shadow: var(--seliware-glow);
         }
         
-        #zapretModal .modal-logo, #cheatsModal .modal-logo {
-            border: 3px solid rgba(0, 255, 136, 0.7);
-            box-shadow: var(--free-glow);
-        }
-        
         .modal-title {
             font-size: 42px;
-            text-shadow: 0 0 15px rgba(0, 162, 255, 0.7);
-        }
-        
-        #seliwareModal .modal-title, #robuxModal .modal-title, #starsModal .modal-title {
             color: var(--accent-color);
-        }
-        
-        #zapretModal .modal-title, #cheatsModal .modal-title {
-            color: var(--free-color);
-            text-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
+            text-shadow: 0 0 15px rgba(0, 162, 255, 0.7);
         }
         
         .close-modal {
@@ -710,14 +638,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-        }
-        
-        #seliwareModal .close-modal, #robuxModal .close-modal, #starsModal .close-modal {
             box-shadow: 0 0 15px rgba(0, 162, 255, 0.3);
-        }
-        
-        #zapretModal .close-modal, #cheatsModal .close-modal {
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
         }
         
         .close-modal:hover {
@@ -756,35 +677,17 @@
             transition: all 0.3s ease;
         }
         
-        #zapretModal .feature-item, #cheatsModal .feature-item {
-            background: linear-gradient(145deg, rgba(0, 255, 136, 0.15), rgba(0, 255, 136, 0.05));
-            border: 1px solid rgba(0, 255, 136, 0.2);
-        }
-        
         .feature-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 162, 255, 0.2);
             border-color: var(--accent-color);
         }
         
-        #zapretModal .feature-item:hover, #cheatsModal .feature-item:hover {
-            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
-            border-color: var(--free-color);
-        }
-        
         .feature-icon {
             font-size: 36px;
-            margin-bottom: 15px;
-        }
-        
-        #seliwareModal .feature-icon, #robuxModal .feature-icon, #starsModal .feature-icon {
             color: var(--accent-color);
             text-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
-        }
-        
-        #zapretModal .feature-icon, #cheatsModal .feature-icon {
-            color: var(--free-color);
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            margin-bottom: 15px;
         }
         
         .feature-text {
@@ -800,7 +703,8 @@
             margin-top: 40px;
         }
         
-        #robuxModal .pricing-options, #starsModal .pricing-options {
+        /* Исправление: добавлен #nftModal в это правило */
+        #robuxModal .pricing-options, #starsModal .pricing-options, #nftModal .pricing-options {
             grid-template-columns: 1fr;
         }
         
@@ -813,20 +717,10 @@
             transition: all 0.3s ease;
         }
         
-        #zapretModal .pricing-card, #cheatsModal .pricing-card {
-            background: linear-gradient(145deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
-            border: 2px solid rgba(0, 255, 136, 0.3);
-        }
-        
         .pricing-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent-color);
             box-shadow: 0 15px 30px rgba(0, 162, 255, 0.3);
-        }
-        
-        #zapretModal .pricing-card:hover, #cheatsModal .pricing-card:hover {
-            border-color: var(--free-color);
-            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
         }
         
         .pricing-title {
@@ -843,14 +737,10 @@
             text-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
         }
         
-        #zapretModal .pricing-price, #cheatsModal .pricing-price {
-            color: var(--free-color);
-            text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
-        }
-        
         .pricing-btn {
             display: inline-block;
             padding: 18px 40px;
+            background: linear-gradient(90deg, var(--accent-color), #0066ff);
             color: white;
             text-decoration: none;
             border-radius: 10px;
@@ -860,28 +750,12 @@
             cursor: pointer;
             width: 100%;
             font-size: 18px;
-        }
-        
-        #seliwareModal .pricing-btn, #robuxModal .pricing-btn, #starsModal .pricing-btn {
-            background: linear-gradient(90deg, var(--accent-color), #0066ff);
             box-shadow: 0 0 20px rgba(0, 162, 255, 0.5);
-        }
-        
-        #zapretModal .pricing-btn, #cheatsModal .pricing-btn {
-            background: linear-gradient(90deg, var(--free-color), #00cc6a);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
         }
         
         .pricing-btn:hover {
             transform: scale(1.05);
-        }
-        
-        #seliwareModal .pricing-btn:hover, #robuxModal .pricing-btn:hover, #starsModal .pricing-btn:hover {
             box-shadow: 0 0 30px rgba(0, 162, 255, 0.7);
-        }
-        
-        #zapretModal .pricing-btn:hover, #cheatsModal .pricing-btn:hover {
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
         }
         
         .download-section {
@@ -1005,18 +879,11 @@
             text-align: center;
         }
         
-        .free-icon {
+        .free-icon, .cheats-icon {
             font-size: 60px;
-            color: var(--free-color);
+            color: var(--accent-color);
             margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
-        }
-        
-        .cheats-icon {
-            font-size: 60px;
-            color: var(--free-color);
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+            text-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
         }
     </style>
 </head>
@@ -1100,6 +967,14 @@
                     <h3 class="product-title">Robux</h3>
                     <p>Валюта на платформе Roblox. Может облегчить игровой процесс. И конечно же, приватка в бреинротах.</p>
                     <button class="details-btn" id="openRobuxModal">Подробнее</button>
+                </div>
+                
+                <!-- Новая карточка: NFT Подарки -->
+                <div class="product-card">
+                    <img src="https://optim.tildacdn.one/tild3933-3031-4130-b835-636637613930/-/resize/200x/-/format/webp/giftgramsicon.png.webp" alt="NFT Подарки" class="product-logo">
+                    <h3 class="product-title">NFT Подарки</h3>
+                    <p>Эксклюзивные подарки в Telegram. Можно продать, передать, носить. Можно обогатиться.</p>
+                    <button class="details-btn" id="openNFTModal">Подробнее</button>
                 </div>
             </div>
         </section>
@@ -1353,6 +1228,63 @@
         </div>
     </div>
     
+    <!-- Модальное окно для NFT Подарков -->
+    <div class="modal-overlay" id="nftModal">
+        <div class="modal">
+            <button class="close-modal" id="closeNFTModal">&times;</button>
+            
+            <div class="modal-header">
+                <img src="https://optim.tildacdn.one/tild3933-3031-4130-b835-636637613930/-/resize/200x/-/format/webp/giftgramsicon.png.webp" alt="NFT Подарки" class="modal-logo">
+                <h2 class="modal-title">NFT Подарки</h2>
+            </div>
+            
+            <p class="modal-description">
+                Эксклюзивные подарки в Telegram. Можно продать, передать, носить. Можно обогатиться.
+            </p>
+            
+            <div class="modal-features">
+                <h2 style="text-align: center; margin-bottom: 30px;">Возможности:</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="feature-text">Продажа</div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="feature-text">Украшение профиля</div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="feature-text">Можно передать</div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="feature-text">Обмениваться</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="text-align: center; margin-bottom: 30px;">Варианты покупки:</h2>
+            <div class="pricing-options">
+                <div class="pricing-card">
+                    <div class="pricing-price">от 300₽</div>
+                    <a href="https://t.me/kalloware" target="_blank" class="pricing-btn">Купить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Модальное окно для Zapret -->
     <div class="modal-overlay" id="zapretModal">
         <div class="modal">
@@ -1370,7 +1302,7 @@
             </p>
             
             <div class="download-section">
-                <h2 style="text-align: center; margin-bottom: 30px; color: var(--free-color);">Скачать</h2>
+                <h2 style="text-align: center; margin-bottom: 30px; color: var(--accent-color);">Скачать</h2>
                 <div class="download-buttons">
                     <a href="https://github.com/Flowseal/zapret-discord-youtube/releases?ysclid=mipraamcqk832145836" target="_blank" class="pricing-btn">Скачать Zapret</a>
                     <a href="https://pastebin.com/raw/85DmxDP0" target="_blank" class="pricing-btn">Списки</a>
@@ -1398,7 +1330,7 @@
             </p>
             
             <div class="download-section">
-                <h2 style="text-align: center; margin-bottom: 30px; color: var(--free-color);">Перейти на сайт</h2>
+                <h2 style="text-align: center; margin-bottom: 30px; color: var(--accent-color);">Перейти на сайт</h2>
                 <div class="single-button">
                     <a href="https://weao.gg" target="_blank" class="pricing-btn">Перейти</a>
                 </div>
@@ -1507,16 +1439,19 @@
         const seliwareModal = document.getElementById('seliwareModal');
         const starsModal = document.getElementById('starsModal');
         const robuxModal = document.getElementById('robuxModal');
+        const nftModal = document.getElementById('nftModal');
         const zapretModal = document.getElementById('zapretModal');
         const cheatsModal = document.getElementById('cheatsModal');
         const openSeliwareBtn = document.getElementById('openSeliwareModal');
         const openStarsBtn = document.getElementById('openStarsModal');
         const openRobuxBtn = document.getElementById('openRobuxModal');
+        const openNFTBtn = document.getElementById('openNFTModal');
         const openZapretBtn = document.getElementById('openZapretModal');
         const openCheatsBtn = document.getElementById('openCheatsModal');
         const closeSeliwareBtn = document.getElementById('closeSeliwareModal');
         const closeStarsBtn = document.getElementById('closeStarsModal');
         const closeRobuxBtn = document.getElementById('closeRobuxModal');
+        const closeNFTBtn = document.getElementById('closeNFTModal');
         const closeZapretBtn = document.getElementById('closeZapretModal');
         const closeCheatsBtn = document.getElementById('closeCheatsModal');
         
@@ -1535,6 +1470,12 @@
         // Открытие модального окна Robux
         openRobuxBtn.addEventListener('click', function() {
             robuxModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Открытие модального окна NFT Подарков
+        openNFTBtn.addEventListener('click', function() {
+            nftModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         });
         
@@ -1568,6 +1509,12 @@
             document.body.style.overflow = 'auto';
         });
         
+        // Закрытие модального окна NFT Подарков
+        closeNFTBtn.addEventListener('click', function() {
+            nftModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
         // Закрытие модального окна Zapret
         closeZapretBtn.addEventListener('click', function() {
             zapretModal.style.display = 'none';
@@ -1581,7 +1528,7 @@
         });
         
         // Закрытие модальных окон при клике вне их области
-        const modals = [seliwareModal, starsModal, robuxModal, zapretModal, cheatsModal];
+        const modals = [seliwareModal, starsModal, robuxModal, nftModal, zapretModal, cheatsModal];
         modals.forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
