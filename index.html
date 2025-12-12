@@ -777,6 +777,14 @@
             margin-top: 25px;
         }
         
+        /* Иконка Minecraft для бесплатной карточки */
+        .minecraft-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(0, 162, 255, 0.5));
+        }
+        
         @media (max-width: 768px) {
             .download-buttons, .single-button {
                 grid-template-columns: 1fr;
@@ -851,6 +859,11 @@
             
             .products-grid, .free-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .minecraft-icon {
+                width: 60px;
+                height: 60px;
             }
         }
         
@@ -938,7 +951,7 @@
         </div>
     </div>
     
-    <!-- Оверлей для затемнения фона -->
+    <!-- Оверлей для затемнения фена -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
     <!-- Контент вкладок -->
@@ -949,7 +962,8 @@
             
             <div class="products-grid">
                 <div class="product-card">
-                    <img src="https://rscripts.net/_next/image?url=%2Fassets%2Fexecutors%2F1760048695891_OlNWTHsSSM.webp&w=640&q=75" alt="Seliware" class="product-logo">
+                    <!-- ОБНОВЛЕННАЯ ССЫЛКА НА ЛОГОТИП SELIWARE -->
+                    <img src="https://github.com/Hujibuji/site/blob/main/1760048695891_OlNWTHsSSM.webp?raw=true" alt="Seliware" class="product-logo">
                     <h3 class="product-title">Seliware</h3>
                     <p>Мощный и надежный исполнитель для Roblox с поддержкой Lua 5.3, обходом античитов и стабильной работой 24/7.</p>
                     <button class="details-btn" id="openSeliwareModal">Подробнее</button>
@@ -969,13 +983,14 @@
                     <button class="details-btn" id="openRobuxModal">Подробнее</button>
                 </div>
                 
-                <!-- Новая карточка: NFT Подарки -->
+                <!-- Карточка: NFT Подарки -->
                 <div class="product-card">
                     <img src="https://optim.tildacdn.one/tild3933-3031-4130-b835-636637613930/-/resize/200x/-/format/webp/giftgramsicon.png.webp" alt="NFT Подарки" class="product-logo">
                     <h3 class="product-title">NFT Подарки</h3>
                     <p>Эксклюзивные подарки в Telegram. Можно продать, передать, носить. Можно обогатиться.</p>
                     <button class="details-btn" id="openNFTModal">Подробнее</button>
                 </div>
+                <!-- КАРТОЧКА MINECRAFT УДАЛЕНА ОТСЮДА -->
             </div>
         </section>
         
@@ -1000,6 +1015,14 @@
                     <h3 class="free-title">Бесплатные читы</h3>
                     <p>Это сайт со всеми читами. Internal, External, Android, IOS. Можно скачать прошлую версию для использования читов на Windows. Написано какие читы обновились (у некоторых работает только с VPN).</p>
                     <button class="free-btn" id="openCheatsModal">Подробнее</button>
+                </div>
+                
+                <!-- НОВАЯ КАРТОЧКА: Сборка для Minecraft (1.18.1) в БЕСПЛАТНОМ разделе -->
+                <div class="free-card">
+                    <img src="https://cdn.worldvectorlogo.com/logos/minecraft-1.svg" alt="Minecraft 1.18.1" class="minecraft-icon">
+                    <h3 class="free-title">Сборка для Minecraft (1.18.1)</h3>
+                    <p>В этом архиве лежат куча модов на оптимизацию и самые лучшие ресурс паки на версию 1.18.1. На среднем компьютере с 60 FPS выросло до 300 FPS. Советую к скачке.</p>
+                    <button class="free-btn" id="openMinecraftModal">Подробнее</button>
                 </div>
             </div>
         </section>
@@ -1055,7 +1078,8 @@
             <button class="close-modal" id="closeSeliwareModal">&times;</button>
             
             <div class="modal-header">
-                <img src="https://rscripts.net/_next/image?url=%2Fassets%2Fexecutors%2F1760048695891_OlNWTHsSSM.webp&w=640&q=75" alt="Seliware" class="modal-logo">
+                <!-- ОБНОВЛЕННАЯ ССЫЛКА НА ЛОГОТИП SELIWARE -->
+                <img src="https://github.com/Hujibuji/site/blob/main/1760048695891_OlNWTHsSSM.webp?raw=true" alt="Seliware" class="modal-logo">
                 <h2 class="modal-title">Seliware</h2>
             </div>
             
@@ -1285,6 +1309,29 @@
         </div>
     </div>
     
+    <!-- Модальное окно для Сборки Minecraft -->
+    <div class="modal-overlay" id="minecraftModal">
+        <div class="modal">
+            <button class="close-modal" id="closeMinecraftModal">&times;</button>
+            
+            <div class="modal-header">
+                <img src="https://cdn.worldvectorlogo.com/logos/minecraft-1.svg" alt="Minecraft 1.18.1" class="modal-logo" style="width: 120px; height: 120px;">
+                <h2 class="modal-title">Сборка для Minecraft (1.18.1)</h2>
+            </div>
+            
+            <p class="modal-description">
+                В этом архиве лежат куча модов на оптимизацию и самые лучшие ресурс паки на версию 1.18.1. На среднем компьютере с 60 FPS выросло до 300 FPS. Советую к скачке.
+            </p>
+            
+            <div class="download-section">
+                <h2 style="text-align: center; margin-bottom: 30px; color: var(--accent-color);">Скачать сборку</h2>
+                <div class="single-button">
+                    <a href="https://t.me/KaLLoWare_Files/3" target="_blank" class="pricing-btn">Перейти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Модальное окно для Zapret -->
     <div class="modal-overlay" id="zapretModal">
         <div class="modal">
@@ -1440,18 +1487,21 @@
         const starsModal = document.getElementById('starsModal');
         const robuxModal = document.getElementById('robuxModal');
         const nftModal = document.getElementById('nftModal');
+        const minecraftModal = document.getElementById('minecraftModal');
         const zapretModal = document.getElementById('zapretModal');
         const cheatsModal = document.getElementById('cheatsModal');
         const openSeliwareBtn = document.getElementById('openSeliwareModal');
         const openStarsBtn = document.getElementById('openStarsModal');
         const openRobuxBtn = document.getElementById('openRobuxModal');
         const openNFTBtn = document.getElementById('openNFTModal');
+        const openMinecraftBtn = document.getElementById('openMinecraftModal');
         const openZapretBtn = document.getElementById('openZapretModal');
         const openCheatsBtn = document.getElementById('openCheatsModal');
         const closeSeliwareBtn = document.getElementById('closeSeliwareModal');
         const closeStarsBtn = document.getElementById('closeStarsModal');
         const closeRobuxBtn = document.getElementById('closeRobuxModal');
         const closeNFTBtn = document.getElementById('closeNFTModal');
+        const closeMinecraftBtn = document.getElementById('closeMinecraftModal');
         const closeZapretBtn = document.getElementById('closeZapretModal');
         const closeCheatsBtn = document.getElementById('closeCheatsModal');
         
@@ -1476,6 +1526,12 @@
         // Открытие модального окна NFT Подарков
         openNFTBtn.addEventListener('click', function() {
             nftModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Открытие модального окна Сборки Minecraft
+        openMinecraftBtn.addEventListener('click', function() {
+            minecraftModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         });
         
@@ -1515,6 +1571,12 @@
             document.body.style.overflow = 'auto';
         });
         
+        // Закрытие модального окна Сборки Minecraft
+        closeMinecraftBtn.addEventListener('click', function() {
+            minecraftModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
         // Закрытие модального окна Zapret
         closeZapretBtn.addEventListener('click', function() {
             zapretModal.style.display = 'none';
@@ -1528,7 +1590,7 @@
         });
         
         // Закрытие модальных окон при клике вне их области
-        const modals = [seliwareModal, starsModal, robuxModal, nftModal, zapretModal, cheatsModal];
+        const modals = [seliwareModal, starsModal, robuxModal, nftModal, minecraftModal, zapretModal, cheatsModal];
         modals.forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
